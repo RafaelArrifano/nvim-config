@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'dense-analysis/ale'
-    Plug 'jiangmiao/auto-pairs'
     Plug 'justinmk/vim-sneak'
     Plug 'kien/ctrlp.vim'
     Plug 'morhetz/gruvbox'
@@ -86,8 +85,10 @@ nnoremap <silent> <leader>pp :e $MYVIMRC<CR>
 
 " CtrlP
 nnoremap <silent> <leader>bb :CtrlPBuffer<CR>
-nnoremap <silent> <leader>ff :CtrlPCurWD<CR>
+nnoremap <silent> <leader>ff :CtrlPRoot<CR>
 nnoremap <silent> <leader>fr :CtrlPMRUFiles<CR>
+nnoremap <silent> <leader>ob :CtrlPBookmarkDir<CR>
+nnoremap <silent> <leader>oB :CtrlPBookmarkDirAdd<CR>
 
 " Buffers
 nnoremap <silent> <leader>bn :bNext<CR>
