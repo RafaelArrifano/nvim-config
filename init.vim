@@ -1,8 +1,9 @@
 call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'dense-analysis/ale'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'junegunn/fzf.vim'
     Plug 'justinmk/vim-sneak'
-    Plug 'kien/ctrlp.vim'
     Plug 'morhetz/gruvbox'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'sheerun/vim-polyglot'
@@ -26,7 +27,6 @@ set tabstop=4
 " Clipboard da DE
 set clipboard=unnamedplus
 
-" Esconde o buffer
 set hidden
 
 " Sem Highlight no search
@@ -66,7 +66,7 @@ inoremap <silent><expr> <Tab>
 " Terminal
 tnoremap <ESC> <C-\><C-n><C-w><C-p>
 autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
+autocmd BufLeave term://* exit
 nnoremap <silent> <leader>ot :sp +ter<CR>
 
 " Linters
@@ -83,15 +83,31 @@ nnoremap <silent> <leader>ee :Ex<CR>
 " init.vim
 nnoremap <silent> <leader>pp :e $MYVIMRC<CR>
 
-" CtrlP
-nnoremap <silent> <leader>bb :CtrlPBuffer<CR>
-nnoremap <silent> <leader>ff :CtrlPRoot<CR>
-nnoremap <silent> <leader>fr :CtrlPMRUFiles<CR>
-nnoremap <silent> <leader>ob :CtrlPBookmarkDir<CR>
-nnoremap <silent> <leader>oB :CtrlPBookmarkDirAdd<CR>
+" Fzf
+let g:fzf_preview_window = ''
+nnoremap <silent> <leader>f. :Files .<CR>
+nnoremap <silent> <leader>ff :Files<CR>
+nnoremap <silent> <leader>bb :Buffers<CR>
 
 " Buffers
-nnoremap <silent> <leader>bn :bNext<CR>
-nnoremap <silent> <leader>bq :bwipeout!<CR>
+nnoremap <silent> <leader>qq :bwipeout!<CR>
 nnoremap <silent> <leader>nn :enew<CR>
-nnoremap <silent> <leader>qq :%bd!<CR>
+
+" Window
+nnoremap <silent> <leader>w <C-w>
+
+" Salvar
+nnoremap <silent> <leader>ss :w<CR>
+
+" Navegação
+nnoremap <silent> <leader>k <C-b>
+nnoremap <silent> <leader>j <C-f>
+
+" Esc
+inoremap <silent> qq <ESC>
+
+" Sort
+vnoremap <silent> qs :'<,'>sort<CR>
+
+" Visual
+nnoremap <silent> <leader>v <C-v>
