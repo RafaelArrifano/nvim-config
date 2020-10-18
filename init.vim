@@ -7,107 +7,86 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'sheerun/vim-polyglot'
-    Plug 'tpope/vim-sensible'
 call plug#end()
 
-" Misc
 set termguicolors
 colorscheme gruvbox
-set number
-
-" Tab comum
 set backspace=indent,eol,start
 set expandtab
-
-" Converte tab em espaços
+set hidden
+set nobackup
+set nohlsearch
+set noswapfile
+set nowrap
+set number
 set shiftwidth=4
 set softtabstop=4
-set tabstop=4
-
-" Clipboard da DE
-set clipboard=unnamedplus
-
-set hidden
-
-" Sem Highlight no search
-set nohlsearch
-
-" Sem quebra de linha
-set nowrap
-
-set updatetime=300
-set wildmenu
-
 set splitbelow
 set splitright
+set tabstop=4
+set undodir=~/.vim/undodir
+set undofile
+set updatetime=50
+set wildmenu
 
-" Auto workdir
 autocmd BufEnter * silent! lcd %:p:h
-
-" Auto sourcing
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
-" Coc
+tnoremap <ESC> <C-\><C-n><C-w><C-p>
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
+nnoremap <silent> <leader>ot :sp +ter<CR>
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Coc Backspace
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-" Coc Tab
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
-" Terminal
-tnoremap <ESC> <C-\><C-n><C-w><C-p>
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufLeave term://* exit
-nnoremap <silent> <leader>ot :sp +ter<CR>
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
 
-" Linters
+tnoremap <ESC> <C-\><C-n><C-w><C-p>
+autocmd TermOpen * startinsert
+autocmd BufLeave term://* stopinsert
+nnoremap <silent> <leader>tt :sp +ter<CR>
+
 let g:ale_fixers = ['prettier', 'eslint']
 let g:ale_fix_on_save = 1
 
-" Leader
 let mapleader = ' '
 
-" Ex
 let g:netrw_banner = 0
 nnoremap <silent> <leader>ee :Ex<CR>
+nnoremap <silent> <leader>op :e $MYVIMRC<CR>
 
-" init.vim
-nnoremap <silent> <leader>pp :e $MYVIMRC<CR>
-
-" Fzf
 let g:fzf_preview_window = ''
-nnoremap <silent> <leader>f. :Files .<CR>
-nnoremap <silent> <leader>ff :Files<CR>
-nnoremap <silent> <leader>bb :Buffers<CR>
+let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
+let $FZF_DEFAULT_OPTS='--reverse'
 
-" Buffers
-nnoremap <silent> <leader>qq :bwipeout!<CR>
-nnoremap <silent> <leader>nn :enew<CR>
-
-" Window
-nnoremap <silent> <leader>w <C-w>
-
-" Salvar
-nnoremap <silent> <leader>ss :w<CR>
-
-" Navegação
-nnoremap <silent> <leader>k <C-b>
-nnoremap <silent> <leader>j <C-f>
-
-" Esc
-inoremap <silent> qq <ESC>
-
-" Sort
-vnoremap <silent> qs :'<,'>sort<CR>
-
-" Visual
-nnoremap <silent> <leader>v <C-v>
+nnoremap + :vertical resize +5<CR>
+nnoremap - :vertical resize -5<CR>
+nnoremap <Leader>of :Files<CR>
+nnoremap <Leader>r0 :resize 100<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>s :wincmd s<CR>
+nnoremap <leader>v :wincmd v<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :bd<CR>
+nnoremap Q :q!<CR>
+nnoremap <leader>p "+p
+nnoremap <leader>y "+y
+vnoremap <leader>p "+p
+vnoremap <leader>y "+y
