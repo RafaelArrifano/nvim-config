@@ -3,14 +3,16 @@ call plug#begin('~/.vim/plugged')
     Plug 'dense-analysis/ale'
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf.vim'
-    Plug 'justinmk/vim-sneak'
-    Plug 'morhetz/gruvbox'
+    Plug 'kaicataldo/material.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 set termguicolors
-colorscheme gruvbox
+let g:material_theme_style = 'darker'
+let g:material_terminal_italics = 1
+colorscheme material
+
 set backspace=indent,eol,start
 set expandtab
 set hidden
@@ -73,20 +75,22 @@ let g:fzf_preview_window = ''
 let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
 let $FZF_DEFAULT_OPTS='--reverse'
 
-nnoremap + :vertical resize +5<CR>
+nnoremap = :vertical resize +5<CR>
 nnoremap - :vertical resize -5<CR>
-nnoremap <Leader>of :Files<CR>
+nnoremap <Leader>of :GFiles<CR>
+nnoremap <Leader>ff :Files /home/rafael<CR>
 nnoremap <Leader>r0 :resize 100<CR>
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>s :wincmd s<CR>
-nnoremap <leader>v :wincmd v<CR>
+nnoremap <silent> <leader>h :wincmd h<CR>
+nnoremap <silent> <leader>j :wincmd j<CR>
+nnoremap <silent> <leader>k :wincmd k<CR>
+nnoremap <silent> <leader>l :wincmd l<CR>
+nnoremap <silent> <leader>s :wincmd s<CR>
+nnoremap <silent> <leader>v :wincmd v<CR>
+nnoremap <silent> <leader><leader> :wincmd w<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :bd<CR>
-nnoremap Q :q!<CR>
+nnoremap <leader>q :q<CR>
 nnoremap <leader>p "+p
 nnoremap <leader>y "+y
 vnoremap <leader>p "+p
 vnoremap <leader>y "+y
+nnoremap <leader>bb :Buffers<CR>
