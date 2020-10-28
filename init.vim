@@ -9,13 +9,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'sheerun/vim-polyglot'
 call plug#end()
 
+set termguicolors
 let g:gruvbox_italic='1'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_sign_column='bg0'
 let g:gruvbox_color_column='bg0'
 colorscheme gruvbox
 
-set termguicolors
 set backspace=indent,eol,start
 set expandtab
 set hidden
@@ -29,7 +29,7 @@ set shiftwidth=4
 set softtabstop=4
 set splitbelow
 set splitright
-set tabstop=4
+set tabstop=2
 set undodir=~/.vim/undodir
 set undofile
 set updatetime=50
@@ -94,7 +94,6 @@ vnoremap <silent> <leader>p "+p
 vnoremap <silent> <leader>y "+y
 
 nnoremap <silent> <leader>f :CtrlP ~/Projetos<CR>
-nnoremap <silent> <leader>F :CtrlP<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 nnoremap <silent> <leader>u :CtrlPUndo<CR>
 nnoremap <silent> <leader>r :CtrlPMRUFiles<CR>
