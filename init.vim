@@ -63,7 +63,7 @@ endfunction
 
 autocmd BufWritePre * silent :call TrimWhiteSpace()
 
-let g:ale_fixers = ['prettier', 'eslint']
+let g:ale_fixers = ['eslint']
 let g:ale_fix_on_save = 1
 
 let mapleader = ' '
@@ -72,9 +72,9 @@ let g:netrw_banner = 0
 
 nnoremap <silent> <leader>ee :Ex<CR>
 nnoremap <silent> <leader>op :e $MYVIMRC<CR>
+nnoremap <silent> <leader>t :ter<CR>
 
 nnoremap <silent> <leader>w :w<CR>
-nnoremap <silent> <leader>Q :q!<CR>
 nnoremap <silent> <leader>q :bd!<CR>
 nnoremap <silent> <leader>x :%bd<CR>
 nnoremap <silent> <leader>X :%bd!<CR>
@@ -93,7 +93,8 @@ nnoremap <silent> <leader>y "+y
 vnoremap <silent> <leader>p "+p
 vnoremap <silent> <leader>y "+y
 
-nnoremap <silent> <leader>f :CtrlP ~/Projetos<CR>
+nnoremap <silent> <leader>. :CtrlP ~/Documentos/Projetos<CR>
+nnoremap <silent> <leader>f :CtrlP<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 nnoremap <silent> <leader>u :CtrlPUndo<CR>
 nnoremap <silent> <leader>r :CtrlPMRUFiles<CR>

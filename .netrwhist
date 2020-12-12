@@ -1,6 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
-let g:netrw_dirhist_4='/home/rafael/.vim/plugged/gruvbox'
-let g:netrw_dirhist_3='/home/rafael/Projetos/Fautop/front-end/src/app/ui/header-bar'
-let g:netrw_dirhist_2='/home/rafael/Projetos/Fautop/front-end/src/app/ui'
-let g:netrw_dirhist_1='/home/rafael/Projetos/Fautop/front-end/src/app'
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/rafael/.vim/plugged/molokai/colors'
+let g:netrw_dirhist_6='/home/rafael/.vim/plugged/molokai'
+let g:netrw_dirhist_5='/home/rafael/.vim/plugged'
+let g:netrw_dirhist_4='/home/rafael/.vim'
+let g:netrw_dirhist_3='/home/rafael'
+let g:netrw_dirhist_2='/home/rafael/.config'
+let g:netrw_dirhist_1='/home/rafael/.config/nvim'
+let g:netrw_dirhist_0='/home/rafael/.config'
+let g:netrw_dirhist_9='/home/rafael'
+let g:netrw_dirhist_8='/home/rafael/.config'
