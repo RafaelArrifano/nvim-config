@@ -11,7 +11,7 @@ call plug#end()
 
 set termguicolors
 let g:gruvbox_italic='1'
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_sign_column='bg0'
 let g:gruvbox_color_column='bg0'
 colorscheme gruvbox
@@ -25,6 +25,8 @@ set nohlsearch
 set noswapfile
 set nowrap
 set number
+set relativenumber
+set nocursorline
 set shiftwidth=4
 set softtabstop=4
 set splitbelow
@@ -45,6 +47,12 @@ autocmd TermOpen * setlocal nonumber norelativenumber
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -74,10 +82,11 @@ nnoremap <silent> <leader>ee :Ex<CR>
 nnoremap <silent> <leader>op :e $MYVIMRC<CR>
 nnoremap <silent> <leader>t :ter<CR>
 
-nnoremap <silent> <leader>w :w<CR>
-nnoremap <silent> <leader>q :bd!<CR>
-nnoremap <silent> <leader>x :%bd<CR>
-nnoremap <silent> <leader>X :%bd!<CR>
+" nnoremap <silent> <leader>w :w<CR>
+" nnoremap <silent> <leader>Q :q<CR>
+" nnoremap <silent> <leader>q :bd!<CR>
+" nnoremap <silent> <leader>x :%bd<CR>
+" nnoremap <silent> <leader>X :%bd!<CR>
 nnoremap <silent> <leader>s :wincmd s<CR>
 nnoremap <silent> <leader>v :wincmd v<CR>
 nnoremap <silent> <leader>h :wincmd h<CR>
@@ -94,6 +103,7 @@ vnoremap <silent> <leader>p "+p
 vnoremap <silent> <leader>y "+y
 
 nnoremap <silent> <leader>. :CtrlP ~/Documentos/Projetos<CR>
+nnoremap <silent> <leader>; :CtrlP ~<CR>
 nnoremap <silent> <leader>f :CtrlP<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 nnoremap <silent> <leader>u :CtrlPUndo<CR>
