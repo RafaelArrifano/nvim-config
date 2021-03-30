@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-    Plug 'airblade/vim-gitgutter'
+    " Plug 'airblade/vim-gitgutter'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dense-analysis/ale'
     Plug 'jiangmiao/auto-pairs'
@@ -7,11 +7,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'sheerun/vim-polyglot'
+    Plug 'mattn/emmet-vim'
 call plug#end()
 
+set background=dark
 set termguicolors
 let g:gruvbox_italic='1'
-" let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_sign_column='bg0'
 let g:gruvbox_color_column='bg0'
 colorscheme gruvbox
@@ -19,14 +21,13 @@ colorscheme gruvbox
 set backspace=indent,eol,start
 set expandtab
 set hidden
-set laststatus=0
+set laststatus=1
 set nobackup
 set nohlsearch
 set noswapfile
 set nowrap
-set number
 set relativenumber
-set nocursorline
+set nu
 set shiftwidth=4
 set softtabstop=4
 set splitbelow
@@ -37,6 +38,7 @@ set undofile
 set updatetime=50
 set wildmenu
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
+set mousemodel=popup
 
 autocmd BufEnter * silent! lcd %:p:h
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
@@ -77,16 +79,20 @@ let g:ale_fix_on_save = 1
 let mapleader = ' '
 
 let g:netrw_banner = 0
+let g:netrw_gh = 0
+
+let g:netrw_list_hide = '^\..*'
+let g:netrw_hide = 1
 
 nnoremap <silent> <leader>ee :Ex<CR>
 nnoremap <silent> <leader>op :e $MYVIMRC<CR>
 nnoremap <silent> <leader>t :ter<CR>
 
-" nnoremap <silent> <leader>w :w<CR>
+nnoremap <silent> <leader>w :w<CR>
 " nnoremap <silent> <leader>Q :q<CR>
-" nnoremap <silent> <leader>q :bd!<CR>
+nnoremap <silent> <leader>q :q!<CR>
 " nnoremap <silent> <leader>x :%bd<CR>
-" nnoremap <silent> <leader>X :%bd!<CR>
+nnoremap <silent> <leader>x :%bd!<CR>
 nnoremap <silent> <leader>s :wincmd s<CR>
 nnoremap <silent> <leader>v :wincmd v<CR>
 nnoremap <silent> <leader>h :wincmd h<CR>
