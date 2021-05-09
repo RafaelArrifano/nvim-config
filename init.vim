@@ -1,22 +1,22 @@
 call plug#begin('~/.vim/plugged')
-    " Plug 'airblade/vim-gitgutter'
+    Plug 'airblade/vim-gitgutter'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dense-analysis/ale'
     Plug 'jiangmiao/auto-pairs'
     Plug 'justinmk/vim-sneak'
-    Plug 'morhetz/gruvbox'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'sheerun/vim-polyglot'
     Plug 'mattn/emmet-vim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'sainnhe/gruvbox-material'
+    Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 set background=dark
 set termguicolors
-let g:gruvbox_italic='1'
-" let g:gruvbox_contrast_dark='medium'
-let g:gruvbox_sign_column='bg0'
-let g:gruvbox_color_column='bg0'
-colorscheme gruvbox
+let g:gruvbox_material_palette='original'
+let g:gruvbox_material_background='medium'
+let g:gruvbox_material_transparent_background=1
+
+colorscheme gruvbox-material
 
 set backspace=indent,eol,start
 set expandtab
@@ -70,8 +70,6 @@ function TrimWhiteSpace()
   %s/\s*$//
   ''
 endfunction
-
-autocmd BufWritePre * silent :call TrimWhiteSpace()
 
 let g:ale_fixers = ['eslint']
 let g:ale_fix_on_save = 1
