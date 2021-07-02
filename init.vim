@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'sainnhe/gruvbox-material'
     Plug 'sheerun/vim-polyglot'
+    Plug 'sbdchd/neoformat'
 call plug#end()
 
 set background=dark
@@ -28,8 +29,8 @@ set noswapfile
 set nowrap
 set relativenumber
 set nu
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set splitbelow
 set splitright
 set tabstop=2
@@ -42,19 +43,18 @@ set mousemodel=popup
 
 autocmd BufEnter * silent! lcd %:p:h
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
-
-tnoremap <ESC> <C-\><C-n><C-w><C-p>
-nnoremap <silent> ' :ter<CR>
-autocmd TermOpen * setlocal nonumber norelativenumber
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+autocmd BufWritePre *.js Neoformat
 
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
+
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -66,12 +66,11 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
-function TrimWhiteSpace()
-  %s/\s*$//
-  ''
-endfunction
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-let g:ale_fixers = ['eslint']
+let g:ale_fixers = ['eslint',
+      \ 'prettier']
 let g:ale_fix_on_save = 1
 
 let mapleader = ' '
@@ -84,12 +83,9 @@ let g:netrw_hide = 1
 
 nnoremap <silent> <leader>ee :Ex<CR>
 nnoremap <silent> <leader>op :e $MYVIMRC<CR>
-nnoremap <silent> <leader>t :ter<CR>
 
 nnoremap <silent> <leader>w :w<CR>
-" nnoremap <silent> <leader>Q :q<CR>
 nnoremap <silent> <leader>q :q!<CR>
-" nnoremap <silent> <leader>x :%bd<CR>
 nnoremap <silent> <leader>x :%bd!<CR>
 nnoremap <silent> <leader>s :wincmd s<CR>
 nnoremap <silent> <leader>v :wincmd v<CR>
@@ -99,14 +95,16 @@ nnoremap <silent> <leader>k :wincmd k<CR>
 nnoremap <silent> <leader>l :wincmd l<CR>
 nnoremap <silent> <leader>/ :wincmd r<CR>
 nnoremap <silent> <leader>n :bNext<CR>
-nnoremap <silent> <Leader>0 :resize 100<CR>
+nnoremap <silent> <Leader>0 :wincmd =<CR>
+nnoremap <silent> <Leader>, :wincmd <<CR>
+nnoremap <silent> <Leader>. :wincmd ><CR>
 
 nnoremap <silent> <leader>p "+p
 nnoremap <silent> <leader>y "+y
 vnoremap <silent> <leader>p "+p
 vnoremap <silent> <leader>y "+y
 
-nnoremap <silent> <leader>. :CtrlP ~/Documentos/Projetos<CR>
+nnoremap <silent> <leader>: :CtrlP ~/Documentos/Projetos<CR>
 nnoremap <silent> <leader>; :CtrlP ~<CR>
 nnoremap <silent> <leader>f :CtrlP<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
