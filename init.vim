@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-    Plug 'airblade/vim-gitgutter'
+    "Plug 'airblade/vim-gitgutter'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dense-analysis/ale'
     Plug 'jiangmiao/auto-pairs'
